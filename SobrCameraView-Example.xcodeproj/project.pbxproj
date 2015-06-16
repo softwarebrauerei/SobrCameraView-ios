@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB681B30A48D0000DA1F /* AppDelegate.swift */; };
+		9458EB6B1B30A48D0000DA1F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB6A1B30A48D0000DA1F /* MainViewController.swift */; };
+		9458EB6E1B30A48D0000DA1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB6C1B30A48D0000DA1F /* Main.storyboard */; };
+		9458EB701B30A48D0000DA1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB6F1B30A48D0000DA1F /* Images.xcassets */; };
+		9458EB731B30A48D0000DA1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB711B30A48D0000DA1F /* LaunchScreen.xib */; };
+		9458EB7F1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */; };
+		9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */; };
+		9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9458EB791B30A48D0000DA1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9458EB5B1B30A48D0000DA1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9458EB621B30A48D0000DA1F;
+			remoteInfo = "SobrCameraView-Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9458EB631B30A48D0000DA1F /* SobrCameraView-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SobrCameraView-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9458EB671B30A48D0000DA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9458EB681B30A48D0000DA1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9458EB6A1B30A48D0000DA1F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9458EB6D1B30A48D0000DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9458EB6F1B30A48D0000DA1F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9458EB721B30A48D0000DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9458EB781B30A48D0000DA1F /* SobrCameraView-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SobrCameraView-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9458EB7D1B30A48D0000DA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SobrCameraView_ExampleTests.swift; sourceTree = "<group>"; };
+		9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobrCameraView.swift; sourceTree = "<group>"; };
+		9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9458EB601B30A48D0000DA1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9458EB751B30A48D0000DA1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9458EB5A1B30A48D0000DA1F = {
+			isa = PBXGroup;
+			children = (
+				9458EB651B30A48D0000DA1F /* SobrCameraView-Example */,
+				9458EB7B1B30A48D0000DA1F /* SobrCameraView-ExampleTests */,
+				9458EB641B30A48D0000DA1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9458EB641B30A48D0000DA1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB631B30A48D0000DA1F /* SobrCameraView-Example.app */,
+				9458EB781B30A48D0000DA1F /* SobrCameraView-ExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9458EB651B30A48D0000DA1F /* SobrCameraView-Example */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB8B1B30A4CC0000DA1F /* SobrCameraView */,
+				9458EB681B30A48D0000DA1F /* AppDelegate.swift */,
+				9458EB6A1B30A48D0000DA1F /* MainViewController.swift */,
+				9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */,
+				9458EB6C1B30A48D0000DA1F /* Main.storyboard */,
+				9458EB6F1B30A48D0000DA1F /* Images.xcassets */,
+				9458EB711B30A48D0000DA1F /* LaunchScreen.xib */,
+				9458EB661B30A48D0000DA1F /* Supporting Files */,
+			);
+			path = "SobrCameraView-Example";
+			sourceTree = "<group>";
+		};
+		9458EB661B30A48D0000DA1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB671B30A48D0000DA1F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9458EB7B1B30A48D0000DA1F /* SobrCameraView-ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */,
+				9458EB7C1B30A48D0000DA1F /* Supporting Files */,
+			);
+			path = "SobrCameraView-ExampleTests";
+			sourceTree = "<group>";
+		};
+		9458EB7C1B30A48D0000DA1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB7D1B30A48D0000DA1F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9458EB8B1B30A4CC0000DA1F /* SobrCameraView */ = {
+			isa = PBXGroup;
+			children = (
+				9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */,
+			);
+			path = SobrCameraView;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9458EB621B30A48D0000DA1F /* SobrCameraView-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9458EB821B30A48D0000DA1F /* Build configuration list for PBXNativeTarget "SobrCameraView-Example" */;
+			buildPhases = (
+				9458EB5F1B30A48D0000DA1F /* Sources */,
+				9458EB601B30A48D0000DA1F /* Frameworks */,
+				9458EB611B30A48D0000DA1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SobrCameraView-Example";
+			productName = "SobrCameraView-Example";
+			productReference = 9458EB631B30A48D0000DA1F /* SobrCameraView-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9458EB771B30A48D0000DA1F /* SobrCameraView-ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9458EB851B30A48D0000DA1F /* Build configuration list for PBXNativeTarget "SobrCameraView-ExampleTests" */;
+			buildPhases = (
+				9458EB741B30A48D0000DA1F /* Sources */,
+				9458EB751B30A48D0000DA1F /* Frameworks */,
+				9458EB761B30A48D0000DA1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9458EB7A1B30A48D0000DA1F /* PBXTargetDependency */,
+			);
+			name = "SobrCameraView-ExampleTests";
+			productName = "SobrCameraView-ExampleTests";
+			productReference = 9458EB781B30A48D0000DA1F /* SobrCameraView-ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9458EB5B1B30A48D0000DA1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Software Brauerei AG";
+				TargetAttributes = {
+					9458EB621B30A48D0000DA1F = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					9458EB771B30A48D0000DA1F = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 9458EB621B30A48D0000DA1F;
+					};
+				};
+			};
+			buildConfigurationList = 9458EB5E1B30A48D0000DA1F /* Build configuration list for PBXProject "SobrCameraView-Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9458EB5A1B30A48D0000DA1F;
+			productRefGroup = 9458EB641B30A48D0000DA1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9458EB621B30A48D0000DA1F /* SobrCameraView-Example */,
+				9458EB771B30A48D0000DA1F /* SobrCameraView-ExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9458EB611B30A48D0000DA1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9458EB6E1B30A48D0000DA1F /* Main.storyboard in Resources */,
+				9458EB731B30A48D0000DA1F /* LaunchScreen.xib in Resources */,
+				9458EB701B30A48D0000DA1F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9458EB761B30A48D0000DA1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9458EB5F1B30A48D0000DA1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9458EB6B1B30A48D0000DA1F /* MainViewController.swift in Sources */,
+				9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */,
+				9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */,
+				9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9458EB741B30A48D0000DA1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9458EB7F1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9458EB7A1B30A48D0000DA1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9458EB621B30A48D0000DA1F /* SobrCameraView-Example */;
+			targetProxy = 9458EB791B30A48D0000DA1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9458EB6C1B30A48D0000DA1F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9458EB6D1B30A48D0000DA1F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9458EB711B30A48D0000DA1F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9458EB721B30A48D0000DA1F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9458EB801B30A48D0000DA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9458EB811B30A48D0000DA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9458EB831B30A48D0000DA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9458EB841B30A48D0000DA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9458EB861B30A48D0000DA1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SobrCameraView-ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
+			};
+			name = Debug;
+		};
+		9458EB871B30A48D0000DA1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SobrCameraView-ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9458EB5E1B30A48D0000DA1F /* Build configuration list for PBXProject "SobrCameraView-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9458EB801B30A48D0000DA1F /* Debug */,
+				9458EB811B30A48D0000DA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9458EB821B30A48D0000DA1F /* Build configuration list for PBXNativeTarget "SobrCameraView-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9458EB831B30A48D0000DA1F /* Debug */,
+				9458EB841B30A48D0000DA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9458EB851B30A48D0000DA1F /* Build configuration list for PBXNativeTarget "SobrCameraView-ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9458EB861B30A48D0000DA1F /* Debug */,
+				9458EB871B30A48D0000DA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9458EB5B1B30A48D0000DA1F /* Project object */;
+}
