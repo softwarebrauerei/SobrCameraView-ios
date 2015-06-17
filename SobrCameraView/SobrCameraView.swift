@@ -294,11 +294,11 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     private func contrastFilter(image: CIImage) -> CIImage {
-        return CIFilter(name: "CIColorControls", withInputParameters: ["inputContrast":1.1, kCIInputImageKey: image]).outputImage
+        return CIFilter(name: "CIColorControls", withInputParameters: ["inputBrightness":0.0, "inputContrast":1.14, "inputSaturation":0.0, kCIInputImageKey: image]).outputImage
     }
     
     private func enhanceFilter(image: CIImage) -> CIImage {
-        return CIFilter(name: "CIColorControls", withInputParameters: ["inputBrightness":0.0, "inputContrast":1.14, "inputSaturation":0.0, kCIInputImageKey: image]).outputImage
+        return CIFilter(name: "CIColorControls", withInputParameters: ["inputContrast":1.1, kCIInputImageKey: image]).outputImage
     }
     
     private func biggestRectangle(rectangles: [CIRectangleFeature]) -> CIRectangleFeature? {
