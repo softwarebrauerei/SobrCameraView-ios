@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67C-0N-nmI">
-                                        <rect key="frame" x="272.5" y="469" width="55" height="30"/>
+                                        <rect key="frame" x="273" y="469" width="55" height="30"/>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.36470588240000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Capture">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
