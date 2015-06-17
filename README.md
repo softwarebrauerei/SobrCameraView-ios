@@ -21,7 +21,7 @@ A simple UIView-Subclass which enables border detection of documents. Based on [
 
 > **Embedded frameworks require a minimum deployment target of iOS 8.**
 
-### CocoaPods (not published yet)
+### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
