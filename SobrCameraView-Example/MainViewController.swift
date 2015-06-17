@@ -57,6 +57,10 @@ class MainViewController: UIViewController {
             self.performSegueWithIdentifier("showImage", sender: nil)
         }
     }
+    
+    @IBAction func toggleTorch(sender: AnyObject?) {
+        self.cameraView.torchEnabled = !self.cameraView.torchEnabled
+    }
 
 }
 
