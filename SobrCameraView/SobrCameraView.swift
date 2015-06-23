@@ -201,7 +201,7 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     
     :param: completion Returns the image as `UIImage`.
     */
-    public func captureImage(completion: (image: UIImage) -> Void) {
+    public func captureImage(completion: (image: UIImage, feature: CIRectangleFeature?) -> Void) {
         if self.capturing {
             return
         }
@@ -236,11 +236,11 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
                 enhancedImage = self.enhanceFilter(enhancedImage)
             }
             
-            if self.borderDetectionEnabled && self.detectionConfidenceValid() {
-                if let rectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(enhancedImage) as! [CIRectangleFeature]) {
-                    enhancedImage = self.perspectiveCorrectedImage(enhancedImage, feature: rectangleFeature)
-                }
-            }
+//            if self.borderDetectionEnabled && self.detectionConfidenceValid() {
+//                if let rectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(enhancedImage) as! [CIRectangleFeature]) {
+//                    enhancedImage = self.perspectiveCorrectedImage(enhancedImage, feature: rectangleFeature)
+//                }
+//            }
             
             UIGraphicsBeginImageContext(CGSize(width: enhancedImage.extent().size.height, height: enhancedImage.extent().size.width))
             
@@ -249,7 +249,7 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            completion(image: image)
+            completion(image: image, feature: self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(enhancedImage) as! [CIRectangleFeature])!)
         })
         self.capturing = false
     }

@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var cameraView: SobrCameraView!
     
     private var _image: UIImage?
+    private var _feature: CIRectangleFeature?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,6 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         self.cameraView.start()
     }
     
@@ -46,14 +43,22 @@ class MainViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showImage" {
-            (segue.destinationViewController as! ImageViewController).image = self._image
+            var points = CornerPoints()
+            points.topLeft = CGPoint(x: 20, y: 100)
+            points.topRight = CGPoint(x: 120, y: 100)
+            points.bottomLeft = CGPoint(x: 20, y: 300)
+            points.bottomRight = CGPoint(x: 120, y: 300)
+            
+            (segue.destinationViewController as! ImageViewController).sourceImage = self._image
+            (segue.destinationViewController as! ImageViewController).rectangleFeature = self._feature
         }
     }
     
     //MARK: Actions
     @IBAction func captureImage(sender: AnyObject?) {
-        self.cameraView.captureImage { (image) -> Void in
+        self.cameraView.captureImage { (image, feature) -> Void in
             self._image = image
+            self._feature = feature
             self.performSegueWithIdentifier("showImage", sender: nil)
         }
     }

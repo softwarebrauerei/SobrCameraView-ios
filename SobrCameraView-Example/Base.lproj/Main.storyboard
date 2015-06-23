@@ -30,8 +30,8 @@
                                             <action selector="captureImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Oej-mn-1q7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zha-XH-F5D">
-                                        <rect key="frame" x="8" y="469" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zha-XH-F5D">
+                                        <rect key="frame" x="8" y="469" width="38" height="30"/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Torch">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,20 +81,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zCt-32-2mC">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-TJ-S03">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQE-DW-VFy" customClass="EditBorderView" customModule="SobrCameraView_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RNt-k5-AXT" firstAttribute="top" secondItem="zCt-32-2mC" secondAttribute="bottom" id="4ZR-Hx-1u9"/>
-                            <constraint firstItem="zCt-32-2mC" firstAttribute="top" secondItem="PgT-sH-3Tf" secondAttribute="bottom" constant="-64" id="CPK-15-6Oa"/>
-                            <constraint firstItem="zCt-32-2mC" firstAttribute="leading" secondItem="Vwy-de-AxM" secondAttribute="leading" id="GBr-OL-S17"/>
-                            <constraint firstAttribute="trailing" secondItem="zCt-32-2mC" secondAttribute="trailing" id="qYa-LZ-Sdj"/>
+                            <constraint firstItem="RNt-k5-AXT" firstAttribute="top" secondItem="RQE-DW-VFy" secondAttribute="bottom" id="236-Mq-2MS"/>
+                            <constraint firstItem="sdh-TJ-S03" firstAttribute="top" secondItem="PgT-sH-3Tf" secondAttribute="bottom" id="2UK-Te-wkZ"/>
+                            <constraint firstAttribute="trailing" secondItem="sdh-TJ-S03" secondAttribute="trailing" id="73u-7h-Dkp"/>
+                            <constraint firstItem="sdh-TJ-S03" firstAttribute="leading" secondItem="Vwy-de-AxM" secondAttribute="leading" id="ELi-KL-aFd"/>
+                            <constraint firstItem="RNt-k5-AXT" firstAttribute="top" secondItem="sdh-TJ-S03" secondAttribute="bottom" id="Kf7-PN-Ylk"/>
+                            <constraint firstAttribute="trailing" secondItem="RQE-DW-VFy" secondAttribute="trailing" id="QYO-xj-ydX"/>
+                            <constraint firstItem="RQE-DW-VFy" firstAttribute="leading" secondItem="Vwy-de-AxM" secondAttribute="leading" id="T60-1l-N3K"/>
+                            <constraint firstItem="RQE-DW-VFy" firstAttribute="top" secondItem="Vwy-de-AxM" secondAttribute="top" id="gGe-39-ICK"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="zCt-32-2mC" id="u08-3S-WgQ"/>
+                        <outlet property="borderView" destination="RQE-DW-VFy" id="S57-YR-uUS"/>
+                        <outlet property="sourceImageView" destination="sdh-TJ-S03" id="9NZ-xb-n7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vkI-BW-ase" userLabel="First Responder" sceneMemberID="firstResponder"/>
