@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.cameraView.setupCameraView()
         self.cameraView.borderDetectionEnabled = true
+        self.cameraView.borderDetectionFrameColor = UIColor(red:0.2, green:0.6, blue:0.86, alpha:0.5)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -33,7 +34,6 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.cameraView.stop()
-        self.navigationController?.navigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {

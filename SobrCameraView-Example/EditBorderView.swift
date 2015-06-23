@@ -83,7 +83,7 @@ public class EditBorderView: UIView {
     public override func drawRect(rect: CGRect) {
         if let currentContext = UIGraphicsGetCurrentContext() {
             CGContextSetRGBFillColor(currentContext, 0, 0, 0, 0.7)
-            CGContextSetRGBStrokeColor(currentContext, 1, 0.43, 0.08, 1.0)
+            CGContextSetRGBStrokeColor(currentContext, 0.2, 0.6, 0.86, 1)
             CGContextSetLineJoin(currentContext, kCGLineJoinRound)
             CGContextSetLineWidth(currentContext, 4.0)
             
@@ -138,20 +138,29 @@ public class EditBorderView: UIView {
     }
     
     private func alignButtons() {
-        let cropButtonSize = CGFloat(200.0)
-        self.topLeftButton.frame = CGRect(x: ((self.pointD.x - cropButtonSize) / 2), y: ((self.pointD.y - cropButtonSize) / 2), width: cropButtonSize, height: cropButtonSize)
-        self.topRightButton.frame = CGRect(x: self.pointC.x - cropButtonSize / 2 , y: self.pointC.y - cropButtonSize / 2, width: cropButtonSize, height: cropButtonSize)
-        self.bottomLeftButton.frame = CGRect(x: self.pointA.x - cropButtonSize / 2 , y: self.pointA.y - cropButtonSize / 2, width: cropButtonSize, height: cropButtonSize)
-        self.bottomRightButton.frame = CGRect(x: self.pointB.x - cropButtonSize / 2 , y: self.pointB.y - cropButtonSize / 2, width: cropButtonSize, height: cropButtonSize)
+        let cropButtonSize = CGFloat(50.0)
+        self.topLeftButton.frame = CGRect(origin: CGPointZero, size: CGSize(width: cropButtonSize, height: cropButtonSize))
+        self.topLeftButton.center = self.pointD
+        
+        self.topRightButton.frame = CGRect(origin: CGPointZero, size: CGSize(width: cropButtonSize, height: cropButtonSize))
+        self.topRightButton.center = self.pointC
+        
+        self.bottomLeftButton.frame = CGRect(origin: CGPointZero, size: CGSize(width: cropButtonSize, height: cropButtonSize))
+        self.bottomLeftButton.center = self.pointA
+        
+        self.bottomRightButton.frame = CGRect(origin: CGPointZero, size: CGSize(width: cropButtonSize, height: cropButtonSize))
+        self.bottomRightButton.center = self.pointB
     }
     
     private func initButtons() {
+        let cornerImageWidth = 18.0
         self.topLeftButton  = UIButton.buttonWithType(.Custom) as! UIButton
         self.topLeftButton.tag = 4
         self.topLeftButton.showsTouchWhenHighlighted = false
         self.topLeftButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
         self.topLeftButton.addTarget(self, action: Selector("pointMoveEnter:forEvent:"), forControlEvents: .TouchDown)
         self.topLeftButton.addTarget(self, action: Selector("pointMoveExit:forEvent:"), forControlEvents: .TouchDragExit)
+        self.topLeftButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.topLeftButton)
         
         self.topRightButton  = UIButton.buttonWithType(.Custom) as! UIButton
@@ -160,6 +169,7 @@ public class EditBorderView: UIView {
         self.topRightButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
         self.topRightButton.addTarget(self, action: Selector("pointMoveEnter:forEvent:"), forControlEvents: .TouchDown)
         self.topRightButton.addTarget(self, action: Selector("pointMoveExit:forEvent:"), forControlEvents: .TouchDragExit)
+        self.topRightButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.topRightButton)
         
         self.bottomRightButton  = UIButton.buttonWithType(.Custom) as! UIButton
@@ -168,6 +178,7 @@ public class EditBorderView: UIView {
         self.bottomRightButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
         self.bottomRightButton.addTarget(self, action: Selector("pointMoveEnter:forEvent:"), forControlEvents: .TouchDown)
         self.bottomRightButton.addTarget(self, action: Selector("pointMoveExit:forEvent:"), forControlEvents: .TouchDragExit)
+        self.bottomRightButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.bottomRightButton)
         
         self.bottomLeftButton  = UIButton.buttonWithType(.Custom) as! UIButton
@@ -176,6 +187,7 @@ public class EditBorderView: UIView {
         self.bottomLeftButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
         self.bottomLeftButton.addTarget(self, action: Selector("pointMoveEnter:forEvent:"), forControlEvents: .TouchDown)
         self.bottomLeftButton.addTarget(self, action: Selector("pointMoveExit:forEvent:"), forControlEvents: .TouchDragExit)
+        self.bottomLeftButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.bottomLeftButton)
         self.alignButtons()
     }
@@ -235,5 +247,16 @@ public class EditBorderView: UIView {
         self.touchOffset = CGPointZero
     }
     
+
+    private func dragImageForButton(width: Double) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: width, height: width)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 1.0)
+        let path = UIBezierPath(ovalInRect: rect)
+        UIColor(red:0.2, green:0.6, blue:0.86, alpha:1).setFill()
+        path.fill()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 
 }

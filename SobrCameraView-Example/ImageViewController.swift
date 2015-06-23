@@ -21,6 +21,7 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.sourceImageView.contentMode = .ScaleAspectFit
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,13 +61,13 @@ class ImageViewController: UIViewController {
             self.borderView.cornerPoints = points
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     private func transformPoint(point: CGPoint, withScale scale: CGFloat) -> CGPoint {
         return CGPoint(x: point.x * scale, y: point.y * scale)
+    }
+    
+    
+    @IBAction func back(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
