@@ -20,7 +20,6 @@ extension UIImageView {
     }
     
     func contentFrame() -> CGRect {
-        let imageSize = self.image!.size
         let scaledImageSize = self.contentSize()
         return CGRect(x: 0.5*(CGRectGetWidth(self.bounds) - scaledImageSize.width), y: 0.5 * (CGRectGetHeight(self.bounds) - scaledImageSize.height), width: scaledImageSize.width, height: scaledImageSize.height)
     }

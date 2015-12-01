@@ -23,7 +23,7 @@ import UIKit
 //
 // a = 1, b = 2, c = 3, d = 4
 
-public struct CornerPoints: DebugPrintable {
+public struct CornerPoints: CustomDebugStringConvertible {
     var topLeft: CGPoint = CGPointZero
     var topRight: CGPoint = CGPointZero
     var bottomRight: CGPoint = CGPointZero
@@ -40,7 +40,7 @@ public class EditBorderView: UIView {
     //MARK: Properties    
     public var cornerPoints: CornerPoints? {
         didSet {
-            debugPrintln(self.cornerPoints)
+            debugPrint(self.cornerPoints)
             self.alignPoints()
             self.needsRedraw()
         }
@@ -71,7 +71,7 @@ public class EditBorderView: UIView {
         
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.clipsToBounds = false
         self.backgroundColor = UIColor.clearColor()
@@ -84,7 +84,7 @@ public class EditBorderView: UIView {
         if let currentContext = UIGraphicsGetCurrentContext() {
             CGContextSetRGBFillColor(currentContext, 0, 0, 0, 0.7)
             CGContextSetRGBStrokeColor(currentContext, 0.2, 0.6, 0.86, 1)
-            CGContextSetLineJoin(currentContext, kCGLineJoinRound)
+            CGContextSetLineJoin(currentContext, CGLineJoin.Round)
             CGContextSetLineWidth(currentContext, 4.0)
             
             let boundingRect = CGContextGetClipBoundingBox(currentContext)
@@ -93,7 +93,7 @@ public class EditBorderView: UIView {
             
             
             //draw path
-            var pathRef = CGPathCreateMutable()
+            let pathRef = CGPathCreateMutable()
             CGPathMoveToPoint(pathRef, nil, self.pointA.x, self.pointA.y)
             CGPathAddLineToPoint(pathRef, nil, self.pointB.x, self.pointB.y)
             CGPathAddLineToPoint(pathRef, nil, self.pointC.x, self.pointC.y)
@@ -103,12 +103,12 @@ public class EditBorderView: UIView {
             
             CGContextAddPath(currentContext, pathRef)
             CGContextStrokePath(currentContext)
-            CGContextSetBlendMode(currentContext, kCGBlendModeClear)
+            CGContextSetBlendMode(currentContext, CGBlendMode.Clear)
             
             CGContextAddPath(currentContext, pathRef)
             CGContextFillPath(currentContext)
             
-            CGContextSetBlendMode(currentContext, kCGBlendModeNormal)
+            CGContextSetBlendMode(currentContext, CGBlendMode.Normal)
         }
         
     }
@@ -154,7 +154,7 @@ public class EditBorderView: UIView {
     
     private func initButtons() {
         let cornerImageWidth = 18.0
-        self.topLeftButton  = UIButton.buttonWithType(.Custom) as! UIButton
+        self.topLeftButton  = UIButton(type: .Custom)
         self.topLeftButton.tag = 4
         self.topLeftButton.showsTouchWhenHighlighted = false
         self.topLeftButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
@@ -163,7 +163,7 @@ public class EditBorderView: UIView {
         self.topLeftButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.topLeftButton)
         
-        self.topRightButton  = UIButton.buttonWithType(.Custom) as! UIButton
+        self.topRightButton  = UIButton(type: .Custom)
         self.topRightButton.tag = 3
         self.topRightButton.showsTouchWhenHighlighted = false
         self.topRightButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
@@ -172,7 +172,7 @@ public class EditBorderView: UIView {
         self.topRightButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.topRightButton)
         
-        self.bottomRightButton  = UIButton.buttonWithType(.Custom) as! UIButton
+        self.bottomRightButton  = UIButton(type: .Custom)
         self.bottomRightButton.tag = 2
         self.bottomRightButton.showsTouchWhenHighlighted = false
         self.bottomRightButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
@@ -181,7 +181,7 @@ public class EditBorderView: UIView {
         self.bottomRightButton.setImage(self.dragImageForButton(cornerImageWidth), forState: .Normal)
         self.addSubview(self.bottomRightButton)
         
-        self.bottomLeftButton  = UIButton.buttonWithType(.Custom) as! UIButton
+        self.bottomLeftButton  = UIButton(type: .Custom)
         self.bottomLeftButton.tag = 1
         self.bottomLeftButton.showsTouchWhenHighlighted = false
         self.bottomLeftButton.addTarget(self, action: Selector("pointMoved:forEvent:"), forControlEvents: .TouchDragInside)
@@ -194,12 +194,12 @@ public class EditBorderView: UIView {
     
     //MARK: Private Helper
     public func pointMoveEnter(sender: UIControl, forEvent event: UIEvent) {
-        let rawPoint = (event.allTouches()?.first as! UITouch).locationInView(self)
+        let rawPoint = event.allTouches()!.first!.locationInView(self)
         self.touchOffset = CGPoint(x: (rawPoint.x - sender.center.x), y: (rawPoint.y - sender.center.y))
     }
     
     public func pointMoved(sender: UIControl, forEvent event: UIEvent) {
-        let rawPoint = (event.allTouches()?.first as! UITouch).locationInView(self)
+        let rawPoint = event.allTouches()!.first!.locationInView(self)
         var point = CGPoint(x: (rawPoint.x - self.touchOffset.x), y: (rawPoint.y - self.touchOffset.y))
         
         if !CGRectContainsPoint(self.bounds, point) {
@@ -236,7 +236,7 @@ public class EditBorderView: UIView {
         case 4:
             self.pointD = point
         default:
-            debugPrintln("no point found...")
+            debugPrint("no point found...")
         }
         
         self.setNeedsDisplay()

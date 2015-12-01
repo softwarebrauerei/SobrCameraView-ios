@@ -39,7 +39,7 @@ class ImageViewController: UIViewController {
         if let feature = self.rectangleFeature {
             let contentScale = self.sourceImageView.contentScale()
             
-            debugPrintln("image scale: \(contentScale)")
+            debugPrint("image scale: \(contentScale)")
 
             var transform = CGAffineTransformMakeScale(1, -1)
             transform = CGAffineTransformTranslate(transform, 0, -self.sourceImageView.frame.size.height)
@@ -50,13 +50,13 @@ class ImageViewController: UIViewController {
             points.topRight = CGPointApplyAffineTransform(feature.topRight, transform)
             points.bottomLeft = CGPointApplyAffineTransform(feature.bottomLeft, transform)
             points.bottomRight = CGPointApplyAffineTransform(feature.bottomRight, transform)
-            debugPrintln("points before: \(points)")
+            debugPrint("points before: \(points)")
             
             points.topLeft = self.transformPoint(points.topLeft, withScale: contentScale)
             points.topRight = self.transformPoint(points.topRight, withScale: contentScale)
             points.bottomLeft = self.transformPoint(points.bottomLeft, withScale: contentScale)
             points.bottomRight = self.transformPoint(points.bottomRight, withScale: contentScale)
-            debugPrintln("points after: \(points)")
+            debugPrint("points after: \(points)")
             
             self.borderView.cornerPoints = points
         }
