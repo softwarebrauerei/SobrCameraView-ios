@@ -16,7 +16,6 @@
 		9458EB7F1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */; };
 		9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */; };
 		9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */; };
-		9458EB931B31B3DF0000DA1F /* EditBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB921B31B3DF0000DA1F /* EditBorderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +42,6 @@
 		9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SobrCameraView_ExampleTests.swift; sourceTree = "<group>"; };
 		9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobrCameraView.swift; sourceTree = "<group>"; };
 		9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		9458EB921B31B3DF0000DA1F /* EditBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBorderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +88,6 @@
 				945023021B3895D5001D9A47 /* UIKitExtensions.swift */,
 				9458EB6A1B30A48D0000DA1F /* MainViewController.swift */,
 				9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */,
-				9458EB921B31B3DF0000DA1F /* EditBorderView.swift */,
 				9458EB6C1B30A48D0000DA1F /* Main.storyboard */,
 				9458EB6F1B30A48D0000DA1F /* Images.xcassets */,
 				9458EB711B30A48D0000DA1F /* LaunchScreen.xib */,
@@ -237,7 +234,6 @@
 				9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */,
 				945023031B3895D5001D9A47 /* UIKitExtensions.swift in Sources */,
 				9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */,
-				9458EB931B31B3DF0000DA1F /* EditBorderView.swift in Sources */,
 				9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

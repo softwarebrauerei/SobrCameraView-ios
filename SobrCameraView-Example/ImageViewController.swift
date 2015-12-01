@@ -13,7 +13,6 @@ class ImageViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var sourceImageView: UIImageView!
-    @IBOutlet weak var borderView: EditBorderView!
     
     var sourceImage: UIImage?
     var rectangleFeature: CIRectangleFeature?
@@ -33,39 +32,6 @@ class ImageViewController: UIViewController {
         super.viewDidAppear(animated)
         self.transformRectangleFeature()
     }
-
-    
-    private func transformRectangleFeature() {
-        if let feature = self.rectangleFeature {
-            let contentScale = self.sourceImageView.contentScale()
-            
-            debugPrint("image scale: \(contentScale)")
-
-            var transform = CGAffineTransformMakeScale(1, -1)
-            transform = CGAffineTransformTranslate(transform, 0, -self.sourceImageView.frame.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
-            
-            var points = CornerPoints()
-            points.topLeft = CGPointApplyAffineTransform(feature.topLeft, transform)
-            points.topRight = CGPointApplyAffineTransform(feature.topRight, transform)
-            points.bottomLeft = CGPointApplyAffineTransform(feature.bottomLeft, transform)
-            points.bottomRight = CGPointApplyAffineTransform(feature.bottomRight, transform)
-            debugPrint("points before: \(points)")
-            
-            points.topLeft = self.transformPoint(points.topLeft, withScale: contentScale)
-            points.topRight = self.transformPoint(points.topRight, withScale: contentScale)
-            points.bottomLeft = self.transformPoint(points.bottomLeft, withScale: contentScale)
-            points.bottomRight = self.transformPoint(points.bottomRight, withScale: contentScale)
-            debugPrint("points after: \(points)")
-            
-            self.borderView.cornerPoints = points
-        }
-    }
-    
-    private func transformPoint(point: CGPoint, withScale scale: CGFloat) -> CGPoint {
-        return CGPoint(x: point.x * scale, y: point.y * scale)
-    }
-    
     
     @IBAction func back(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)

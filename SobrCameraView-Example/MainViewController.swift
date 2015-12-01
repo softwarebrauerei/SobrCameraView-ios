@@ -21,8 +21,6 @@ class MainViewController: UIViewController {
         self.cameraView.setupCameraView()
         self.cameraView.borderDetectionEnabled = true
         self.cameraView.borderDetectionFrameColor = UIColor(red:0.2, green:0.6, blue:0.86, alpha:0.5)
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,22 +33,10 @@ class MainViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.cameraView.stop()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showImage" {
-            var points = CornerPoints()
-            points.topLeft = CGPoint(x: 20, y: 100)
-            points.topRight = CGPoint(x: 120, y: 100)
-            points.bottomLeft = CGPoint(x: 20, y: 300)
-            points.bottomRight = CGPoint(x: 120, y: 300)
-            
             (segue.destinationViewController as! ImageViewController).sourceImage = self._image
-            (segue.destinationViewController as! ImageViewController).rectangleFeature = self._feature
         }
     }
     
