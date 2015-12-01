@@ -28,10 +28,6 @@ class ImageViewController: UIViewController {
         self.sourceImageView.image = self.sourceImage
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.transformRectangleFeature()
-    }
     
     @IBAction func back(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)

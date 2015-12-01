@@ -33,8 +33,8 @@
                                             <action selector="captureImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Oej-mn-1q7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zha-XH-F5D">
-                                        <rect key="frame" x="8" y="469" width="38" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zha-XH-F5D">
+                                        <rect key="frame" x="8" y="469" width="39" height="30"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Torch">
