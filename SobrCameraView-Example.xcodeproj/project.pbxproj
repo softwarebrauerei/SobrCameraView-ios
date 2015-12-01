@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		945023031B3895D5001D9A47 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945023021B3895D5001D9A47 /* UIKitExtensions.swift */; };
 		9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB681B30A48D0000DA1F /* AppDelegate.swift */; };
 		9458EB6B1B30A48D0000DA1F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB6A1B30A48D0000DA1F /* MainViewController.swift */; };
 		9458EB6E1B30A48D0000DA1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB6C1B30A48D0000DA1F /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		945023021B3895D5001D9A47 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		9458EB631B30A48D0000DA1F /* SobrCameraView-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SobrCameraView-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9458EB671B30A48D0000DA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9458EB681B30A48D0000DA1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				9458EB8B1B30A4CC0000DA1F /* SobrCameraView */,
 				9458EB681B30A48D0000DA1F /* AppDelegate.swift */,
+				945023021B3895D5001D9A47 /* UIKitExtensions.swift */,
 				9458EB6A1B30A48D0000DA1F /* MainViewController.swift */,
 				9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */,
 				9458EB6C1B30A48D0000DA1F /* Main.storyboard */,
@@ -170,7 +173,8 @@
 		9458EB5B1B30A48D0000DA1F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Software Brauerei AG";
 				TargetAttributes = {
 					9458EB621B30A48D0000DA1F = {
@@ -228,6 +232,7 @@
 			files = (
 				9458EB6B1B30A48D0000DA1F /* MainViewController.swift in Sources */,
 				9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */,
+				945023031B3895D5001D9A47 /* UIKitExtensions.swift in Sources */,
 				9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */,
 				9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */,
 			);
@@ -292,6 +297,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -358,6 +364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -368,6 +375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -386,6 +394,7 @@
 				);
 				INFOPLIST_FILE = "SobrCameraView-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
 			};
@@ -401,6 +410,7 @@
 				);
 				INFOPLIST_FILE = "SobrCameraView-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
 			};
@@ -425,6 +435,7 @@
 				9458EB841B30A48D0000DA1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9458EB851B30A48D0000DA1F /* Build configuration list for PBXNativeTarget "SobrCameraView-ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +444,7 @@
 				9458EB871B30A48D0000DA1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

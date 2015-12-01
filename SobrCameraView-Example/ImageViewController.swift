@@ -7,27 +7,29 @@
 //
 
 import UIKit
+import CoreImage
 
 class ImageViewController: UIViewController {
     
     //MARK: Outlets
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var sourceImageView: UIImageView!
     
-    var image: UIImage?
+    var sourceImage: UIImage?
+    var rectangleFeature: CIRectangleFeature?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.sourceImageView.contentMode = .ScaleAspectFit
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.imageView.image = self.image
+        self.sourceImageView.image = self.sourceImage
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    @IBAction func back(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

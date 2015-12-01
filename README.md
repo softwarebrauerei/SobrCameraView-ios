@@ -66,7 +66,7 @@ $ pod install
 	        super.viewDidAppear(animated)
 	        self.cameraView.start()
 	    }
-	    
+
 	    override func viewWillDisappear(animated: Bool) {
 	        super.viewWillDisappear(animated)
 	        self.cameraView.stop()
