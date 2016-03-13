@@ -1,3 +1,6 @@
+# THIS REPOSITORY WILL NO LONGER BE MAINTAINED BY THE DEVELOPER.
+Feel free to fork and enhance it.
+
 SobrCameraView for iOS
 ======================
 A simple UIView-Subclass which enables border detection of documents. Based on [IPDFCameraViewController of Maximilian Mackh](https://github.com/mmackh/IPDFCameraViewController), rewritten in Swift and added some enhancements.
