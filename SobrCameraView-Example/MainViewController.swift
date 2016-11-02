@@ -17,11 +17,29 @@ class MainViewController: UIViewController {
     fileprivate var _feature: CIRectangleFeature?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.cameraView.setupCameraView()
         self.cameraView.borderDetectionEnabled = true
         self.cameraView.borderDetectionFrameColor = UIColor(red:0.2, green:0.6, blue:0.86, alpha:0.5)
+        
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(MainViewController.updateIfBorderIsDetected), userInfo: nil, repeats: true)
     }
+    
+    
+    func updateIfBorderIsDetected() {
+        
+        if self.cameraView.isBorderDetected {
+            
+            print("border detected")
+            
+        } else {
+            
+            print("nothing")
+            
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -64,6 +64,9 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
         }
     }
     
+    /// Sets if border is detected
+    open var isBorderDetected : Bool = false
+    
     //MARK: Private Properties
     fileprivate var captureSession = AVCaptureSession()
     fileprivate var captureDevice: AVCaptureDevice?
@@ -390,9 +393,11 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
             if let lastRectFeature = self.borderDetectLastRectangleFeature {
                 self.imageDetectionConfidence += 0.5
                 image = self.overlayImageForFeatureInImage(image, feature: lastRectFeature)
+                self.isBorderDetected = true
             }
             else {
                 self.imageDetectionConfidence = 0.0
+                 self.isBorderDetected = false
             }
         }
         
