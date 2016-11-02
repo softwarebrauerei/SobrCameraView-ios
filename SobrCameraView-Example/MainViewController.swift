@@ -13,8 +13,8 @@ class MainViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var cameraView: SobrCameraView!
     
-    private var _image: UIImage?
-    private var _feature: CIRectangleFeature?
+    fileprivate var _image: UIImage?
+    fileprivate var _feature: CIRectangleFeature?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,33 +23,33 @@ class MainViewController: UIViewController {
         self.cameraView.borderDetectionFrameColor = UIColor(red:0.2, green:0.6, blue:0.86, alpha:0.5)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         self.cameraView.start()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.cameraView.stop()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showImage" {
-            (segue.destinationViewController as! ImageViewController).sourceImage = self._image
+            (segue.destination as! ImageViewController).sourceImage = self._image
         }
     }
     
     //MARK: Actions
-    @IBAction func captureImage(sender: AnyObject?) {
+    @IBAction func captureImage(_ sender: AnyObject?) {
         self.cameraView.captureImage { (image, feature) -> Void in
             self._image = image
             self._feature = feature
-            self.performSegueWithIdentifier("showImage", sender: nil)
+            self.performSegue(withIdentifier: "showImage", sender: nil)
         }
     }
     
-    @IBAction func toggleTorch(sender: AnyObject?) {
+    @IBAction func toggleTorch(_ sender: AnyObject?) {
         self.cameraView.torchEnabled = !self.cameraView.torchEnabled
     }
 
