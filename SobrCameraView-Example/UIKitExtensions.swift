@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView {
     func contentScale() -> CGFloat {
-        return CGFloat(fminf(Float(CGRectGetWidth(self.bounds)/self.image!.size.width), Float(CGRectGetHeight(self.bounds)/self.image!.size.height)))
+        return CGFloat(fminf(Float(self.bounds.width/self.image!.size.width), Float(self.bounds.height/self.image!.size.height)))
     }
     
     func contentSize() -> CGSize {
@@ -21,6 +21,6 @@ extension UIImageView {
     
     func contentFrame() -> CGRect {
         let scaledImageSize = self.contentSize()
-        return CGRect(x: 0.5*(CGRectGetWidth(self.bounds) - scaledImageSize.width), y: 0.5 * (CGRectGetHeight(self.bounds) - scaledImageSize.height), width: scaledImageSize.width, height: scaledImageSize.height)
+        return CGRect(x: 0.5*(self.bounds.width - scaledImageSize.width), y: 0.5 * (self.bounds.height - scaledImageSize.height), width: scaledImageSize.width, height: scaledImageSize.height)
     }
 }

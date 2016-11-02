@@ -21,27 +21,27 @@ Available Image Filters
 - `.Normal`: Increases the contrast on colored pictures.
 */
 public enum SobrCameraViewImageFilter: Int {
-    case BlackAndWhite = 0
-    case Normal = 1
+    case blackAndWhite = 0
+    case normal = 1
 }
 
 /**
 *  A simple UIView-Subclass which enables border detection of documents
 */
-public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
+open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     //MARK: Properties
     /// Enables realtime border detection.
-    public var borderDetectionEnabled = true
+    open var borderDetectionEnabled = true
     /// The color of the detection frame.
-    public var borderDetectionFrameColor: UIColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+    open var borderDetectionFrameColor: UIColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.5)
     /// Sets the torch enabled or disabled.
-    public var torchEnabled = false {
+    open var torchEnabled = false {
         didSet {
             if let device = self.captureDevice {
                 if device.hasTorch && device.hasFlash {
                     try! device.lockForConfiguration()
-                    device.torchMode = self.torchEnabled ? .On : .Off
+                    device.torchMode = self.torchEnabled ? .on : .off
                     device.unlockForConfiguration()
                 }
             }
@@ -49,15 +49,15 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     /// Sets the imageFilter based on `SobrCameraViewImageFilter` Enum.
-    public var imageFilter: SobrCameraViewImageFilter = .Normal {
+    open var imageFilter: SobrCameraViewImageFilter = .normal {
         didSet {
             if let glkView = self.glkView {
-                let effect = UIBlurEffect(style: .Dark)
+                let effect = UIBlurEffect(style: .dark)
                 let effectView = UIVisualEffectView(effect: effect)
                 effectView.frame = self.bounds
                 self.insertSubview(effectView, aboveSubview: glkView)
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.25 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: { () -> Void in
                     effectView.removeFromSuperview()
                 })
             }
@@ -65,47 +65,47 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     //MARK: Private Properties
-    private var captureSession = AVCaptureSession()
-    private var captureDevice: AVCaptureDevice?
-    private var context: EAGLContext?
-    private var stillImageOutput: AVCaptureStillImageOutput = AVCaptureStillImageOutput()
-    private var forceStop: Bool = false
-    private var coreImageContext: CIContext?
-    private var renderBuffer: GLuint = 0
-    private var glkView: GLKView?
-    private var stopped: Bool = false
-    private var imageDetectionConfidence = 0.0
-    private var borderDetectFrame: Bool = false
-    private var borderDetectLastRectangleFeature: CIRectangleFeature?
-    private var capturing: Bool = false
-    private var timeKeeper: NSTimer?
+    fileprivate var captureSession = AVCaptureSession()
+    fileprivate var captureDevice: AVCaptureDevice?
+    fileprivate var context: EAGLContext?
+    fileprivate var stillImageOutput: AVCaptureStillImageOutput = AVCaptureStillImageOutput()
+    fileprivate var forceStop: Bool = false
+    fileprivate var coreImageContext: CIContext?
+    fileprivate var renderBuffer: GLuint = 0
+    fileprivate var glkView: GLKView?
+    fileprivate var stopped: Bool = false
+    fileprivate var imageDetectionConfidence = 0.0
+    fileprivate var borderDetectFrame: Bool = false
+    fileprivate var borderDetectLastRectangleFeature: CIRectangleFeature?
+    fileprivate var capturing: Bool = false
+    fileprivate var timeKeeper: Timer?
     
-    private static let highAccuracyRectangleDetector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+    fileprivate static let highAccuracyRectangleDetector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
     
     //MARK: Lifecycle
     
     /**
     Adds observers to the NSNotificationCenter.
     */
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("_backgroundMode"), name: UIApplicationWillResignActiveNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("_foregroundMode"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SobrCameraView._backgroundMode), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SobrCameraView._foregroundMode), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: Actions
     /**
     Set's up all needed Elements for Video and Border detection. Should be called in `viewDidLoad:` in the view controller.
     */
-    public func setupCameraView() {
+    open func setupCameraView() {
         self.setupGLKView()
         
-        let allDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
-        let aDevice: AnyObject? = allDevices.first
+        let allDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
+        let aDevice: AnyObject? = allDevices?.first as AnyObject?
         
         if aDevice == nil {
             return
@@ -121,23 +121,23 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.alwaysDiscardsLateVideoFrames = true
 //        dataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
-        dataOutput.setSampleBufferDelegate(self, queue: dispatch_get_main_queue())
+        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
         self.captureSession.addOutput(dataOutput)
         
         self.captureSession.addOutput(self.stillImageOutput)
         
         let connection = dataOutput.connections.first as! AVCaptureConnection
-        connection.videoOrientation = .Portrait
+        connection.videoOrientation = .portrait
         
-        if self.captureDevice!.flashAvailable {
+        if self.captureDevice!.isFlashAvailable {
             try! self.captureDevice?.lockForConfiguration()
-            self.captureDevice?.flashMode = .Off
+            self.captureDevice?.flashMode = .off
             self.captureDevice?.unlockForConfiguration()
         }
         
-        if self.captureDevice!.isFocusModeSupported(.ContinuousAutoFocus) {
+        if self.captureDevice!.isFocusModeSupported(.continuousAutoFocus) {
             try! self.captureDevice?.lockForConfiguration()
-            self.captureDevice?.focusMode = .ContinuousAutoFocus
+            self.captureDevice?.focusMode = .continuousAutoFocus
             self.captureDevice?.unlockForConfiguration()
         }
         
@@ -148,17 +148,17 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     /**
     Starts the camera.
     */
-    public func start() {
+    open func start() {
         self.stopped = false
         self.captureSession.startRunning()
         self.hideGlkView(false, completion: nil)
-        self.timeKeeper = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("_enableBorderDetection"), userInfo: nil, repeats: true)
+        self.timeKeeper = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SobrCameraView._enableBorderDetection), userInfo: nil, repeats: true)
     }
     
     /**
     Stops the camera
     */
-    public func stop() {
+    open func stop() {
         self.stopped = true
         self.captureSession.stopRunning()
         self.hideGlkView(true, completion: nil)
@@ -171,19 +171,19 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     :param: point      The point to focus.
     :param: completion The completion handler will be called everytime. Even if the camera does not support focus.
     */
-    public func focusAt(point: CGPoint, completion:((Void)-> Void)?) {
+    open func focusAt(_ point: CGPoint, completion:((Void)-> Void)?) {
         if let device = self.captureDevice {
             let poi = CGPoint(x: point.y / self.bounds.height, y: 1.0 - (point.x / self.bounds.width))
-            if device.focusPointOfInterestSupported && device.isFocusModeSupported(.AutoFocus) {
+            if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus) {
                 try! device.lockForConfiguration()
-                if device.isFocusModeSupported(.ContinuousAutoFocus) {
-                    device.focusMode = .ContinuousAutoFocus
+                if device.isFocusModeSupported(.continuousAutoFocus) {
+                    device.focusMode = .continuousAutoFocus
                     device.focusPointOfInterest = poi
                 }
                 
-                if device.exposurePointOfInterestSupported && device.isExposureModeSupported(.ContinuousAutoExposure) {
+                if device.isExposurePointOfInterestSupported && device.isExposureModeSupported(.continuousAutoExposure) {
                     device.exposurePointOfInterest = poi
-                    device.exposureMode = .ContinuousAutoExposure
+                    device.exposureMode = .continuousAutoExposure
                 }
                 
                 device.unlockForConfiguration()
@@ -201,7 +201,7 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     
     :param: completion Returns the image as `UIImage`.
     */
-    public func captureImage(completion: (image: UIImage, feature: CIRectangleFeature?) -> Void) {
+    open func captureImage(_ completion: @escaping (_ image: UIImage, _ feature: CIRectangleFeature?) -> Void) {
         if self.capturing {
             return
         }
@@ -225,31 +225,31 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
             }
         }
         
-        self.stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection!, completionHandler: { (imageSampleBuffer, error) -> Void in
+        self.stillImageOutput.captureStillImageAsynchronously(from: videoConnection!, completionHandler: { (imageSampleBuffer, error) -> Void in
             let jpg = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
             
-            var enhancedImage: CIImage = CIImage(data: jpg)!
+            var enhancedImage: CIImage = CIImage(data: jpg!)!
             switch self.imageFilter {
-            case .BlackAndWhite:
+            case .blackAndWhite:
                 enhancedImage = self.contrastFilter(enhancedImage)
             default:
                 enhancedImage = self.enhanceFilter(enhancedImage)
             }
             
             if self.borderDetectionEnabled && self.detectionConfidenceValid() {
-                if let rectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(enhancedImage) as! [CIRectangleFeature]) {
+                if let rectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector?.features(in: enhancedImage) as! [CIRectangleFeature]) {
                     enhancedImage = self.perspectiveCorrectedImage(enhancedImage, feature: rectangleFeature)
                 }
             }
             
             UIGraphicsBeginImageContext(CGSize(width: enhancedImage.extent.size.height, height: enhancedImage.extent.size.width))
             
-            UIImage(CIImage: enhancedImage, scale: 1.0, orientation: UIImageOrientation.Right).drawInRect(CGRect(x: 0, y: 0, width: enhancedImage.extent.size.height, height: enhancedImage.extent.size.width))
+            UIImage(ciImage: enhancedImage, scale: 1.0, orientation: UIImageOrientation.right).draw(in: CGRect(x: 0, y: 0, width: enhancedImage.extent.size.height, height: enhancedImage.extent.size.width))
             
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            completion(image: image, feature: self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(enhancedImage) as! [CIRectangleFeature]))
+            completion(image!, self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector?.features(in: enhancedImage) as! [CIRectangleFeature]))
         })
         self.capturing = false
     }
@@ -258,50 +258,50 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    public func _backgroundMode() {
+    open func _backgroundMode() {
         self.forceStop = true
     }
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    public func _foregroundMode() {
+    open func _foregroundMode() {
         self.forceStop = false
     }
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    public func _enableBorderDetection() {
+    open func _enableBorderDetection() {
         self.borderDetectFrame = true
     }
     
-    private func setupGLKView() {
+    fileprivate func setupGLKView() {
         if let _ = self.context {
             return
         }
         
-        self.context = EAGLContext(API: .OpenGLES2)
+        self.context = EAGLContext(api: .openGLES2)
         self.glkView = GLKView(frame: self.bounds, context: self.context!)
-        self.glkView!.autoresizingMask = ([UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight])
+        self.glkView!.autoresizingMask = ([UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight])
         self.glkView!.translatesAutoresizingMaskIntoConstraints = true
         self.glkView!.contentScaleFactor = 1.0
-        self.glkView!.drawableDepthFormat = .Format24
-        self.insertSubview(self.glkView!, atIndex: 0)
+        self.glkView!.drawableDepthFormat = .format24
+        self.insertSubview(self.glkView!, at: 0)
         glGenRenderbuffers(1, &self.renderBuffer)
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), self.renderBuffer)
         
-        self.coreImageContext = CIContext(EAGLContext: self.context!, options: [kCIContextUseSoftwareRenderer: true])
-        EAGLContext.setCurrentContext(self.context!)
+        self.coreImageContext = CIContext(eaglContext: self.context!, options: [kCIContextUseSoftwareRenderer: true])
+        EAGLContext.setCurrent(self.context!)
     }
     
-    private func contrastFilter(image: CIImage) -> CIImage {
+    fileprivate func contrastFilter(_ image: CIImage) -> CIImage {
         return CIFilter(name: "CIColorControls", withInputParameters: ["inputContrast":1.1, kCIInputImageKey: image])!.outputImage!
     }
     
-    private func enhanceFilter(image: CIImage) -> CIImage {
+    fileprivate func enhanceFilter(_ image: CIImage) -> CIImage {
         return CIFilter(name: "CIColorControls", withInputParameters: ["inputBrightness":0.0, "inputContrast":1.14, "inputSaturation":0.0, kCIInputImageKey: image])!.outputImage!
     }
     
-    private func biggestRectangle(rectangles: [CIRectangleFeature]) -> CIRectangleFeature? {
+    fileprivate func biggestRectangle(_ rectangles: [CIRectangleFeature]) -> CIRectangleFeature? {
         if rectangles.count == 0 {
             return nil
         }
@@ -327,42 +327,42 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
         return biggestRectangle
     }
     
-    private func overlayImageForFeatureInImage(image: CIImage, feature: CIRectangleFeature) -> CIImage! {
+    fileprivate func overlayImageForFeatureInImage(_ image: CIImage, feature: CIRectangleFeature) -> CIImage! {
         var overlay = CIImage(color: CIColor(color: self.borderDetectionFrameColor))
-        overlay = overlay.imageByCroppingToRect(image.extent)
-        overlay = overlay.imageByApplyingFilter("CIPerspectiveTransformWithExtent", withInputParameters: ["inputExtent":     CIVector(CGRect: image.extent),
-            "inputTopLeft":    CIVector(CGPoint: feature.topLeft),
-            "inputTopRight":   CIVector(CGPoint: feature.topRight),
-            "inputBottomLeft": CIVector(CGPoint: feature.bottomLeft),
-            "inputBottomRight": CIVector(CGPoint: feature.bottomRight)])
-        return overlay.imageByCompositingOverImage(image)
+        overlay = overlay.cropping(to: image.extent)
+        overlay = overlay.applyingFilter("CIPerspectiveTransformWithExtent", withInputParameters: ["inputExtent":     CIVector(cgRect: image.extent),
+            "inputTopLeft":    CIVector(cgPoint: feature.topLeft),
+            "inputTopRight":   CIVector(cgPoint: feature.topRight),
+            "inputBottomLeft": CIVector(cgPoint: feature.bottomLeft),
+            "inputBottomRight": CIVector(cgPoint: feature.bottomRight)])
+        return overlay.compositingOverImage(image)
     }
     
-    private func hideGlkView(hide: Bool, completion:( () -> Void)?) {
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
+    fileprivate func hideGlkView(_ hide: Bool, completion:( () -> Void)?) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.glkView?.alpha = (hide) ? 0.0 : 1.0
-            }) { (finished) -> Void in
+            }, completion: { (finished) -> Void in
                 completion?()
-        }
+        }) 
     }
     
-    private func detectionConfidenceValid() -> Bool {
+    fileprivate func detectionConfidenceValid() -> Bool {
         return (self.imageDetectionConfidence > 1.0)
     }
     
-    private func perspectiveCorrectedImage(image: CIImage, feature: CIRectangleFeature) -> CIImage {
-        return image.imageByApplyingFilter("CIPerspectiveCorrection", withInputParameters: [
-            "inputTopLeft":    CIVector(CGPoint: feature.topLeft),
-            "inputTopRight":   CIVector(CGPoint: feature.topRight),
-            "inputBottomLeft": CIVector(CGPoint: feature.bottomLeft),
-            "inputBottomRight":CIVector(CGPoint: feature.bottomRight)])
+    fileprivate func perspectiveCorrectedImage(_ image: CIImage, feature: CIRectangleFeature) -> CIImage {
+        return image.applyingFilter("CIPerspectiveCorrection", withInputParameters: [
+            "inputTopLeft":    CIVector(cgPoint: feature.topLeft),
+            "inputTopRight":   CIVector(cgPoint: feature.topRight),
+            "inputBottomLeft": CIVector(cgPoint: feature.bottomLeft),
+            "inputBottomRight":CIVector(cgPoint: feature.bottomRight)])
     }
     
     //MARK: AVCaptureVideoDataOutputSampleBufferDelegate
     /**
     This method is for internal use only. But must be declared public because it matches a requirement in public protocol `AVCaptureVideoDataOutputSampleBufferDelegate`.
     */
-    public func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+    open func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         if self.forceStop {
             return
         }
@@ -372,10 +372,10 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
         }
         
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        var image = CIImage(CVPixelBuffer: pixelBuffer!)
+        var image = CIImage(cvPixelBuffer: pixelBuffer!)
         
         switch self.imageFilter {
-        case .BlackAndWhite:
+        case .blackAndWhite:
             image = self.contrastFilter(image)
         default:
             image = self.enhanceFilter(image)
@@ -383,7 +383,7 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
         
         if self.borderDetectionEnabled {
             if self.borderDetectFrame {
-                self.borderDetectLastRectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector.featuresInImage(image) as! [CIRectangleFeature])
+                self.borderDetectLastRectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector?.features(in: image) as! [CIRectangleFeature])
                 self.borderDetectFrame = false
             }
             
@@ -397,7 +397,7 @@ public class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegat
         }
         
         if let context = self.context, let ciContext = self.coreImageContext, let glkView = self.glkView {
-            ciContext.drawImage(image, inRect: self.bounds, fromRect: image.extent)
+            ciContext.draw(image, in: self.bounds, from: image.extent)
             context.presentRenderbuffer(Int(GL_RENDERBUFFER))
             glkView.setNeedsDisplay()
         }
