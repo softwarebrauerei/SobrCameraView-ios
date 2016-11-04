@@ -67,6 +67,17 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     /// Sets if border is detected
     open var isBorderDetected : Bool = false
     
+    /// Get last detected rectangle 
+    open var lastDetectedRectangle : CIRectangleFeature {
+        
+        if borderDetectLastRectangleFeature != nil {
+            return  borderDetectLastRectangleFeature!
+        } else {
+            return CIRectangleFeature()
+        }
+        
+    }
+    
     //MARK: Private Properties
     fileprivate var captureSession = AVCaptureSession()
     fileprivate var captureDevice: AVCaptureDevice?
@@ -83,7 +94,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     fileprivate var capturing: Bool = false
     fileprivate var timeKeeper: Timer?
     
-    fileprivate static let highAccuracyRectangleDetector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+    fileprivate static let highAccuracyRectangleDetector = CIDetector(ofType: CIDetectorTypeRectangle , context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
     
     //MARK: Lifecycle
     
@@ -97,7 +108,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)  
     }
     
     //MARK: Actions
@@ -241,6 +252,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
             
             if self.borderDetectionEnabled && self.detectionConfidenceValid() {
                 if let rectangleFeature = self.biggestRectangle(SobrCameraView.highAccuracyRectangleDetector?.features(in: enhancedImage) as! [CIRectangleFeature]) {
+                    rectangleFeature
                     enhancedImage = self.perspectiveCorrectedImage(enhancedImage, feature: rectangleFeature)
                 }
             }
