@@ -104,8 +104,8 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     open func setupCameraView() {
         self.setupGLKView()
         
-        let allDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-        let aDevice: AnyObject? = allDevices?.first as AnyObject
+        let allDevices = AVCaptureDevice.devices(for: AVMediaType.video)
+        let aDevice: AnyObject? = allDevices.first as AnyObject
         
         if aDevice == nil {
             return
@@ -114,8 +114,8 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
         self.captureSession.beginConfiguration()
         self.captureDevice = (aDevice as! AVCaptureDevice)
         
-        let input = try! AVCaptureDeviceInput(device: self.captureDevice)
-        self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+        let input = try! AVCaptureDeviceInput(device: self.captureDevice!)
+        self.captureSession.sessionPreset = AVCaptureSession.Preset.photo
         self.captureSession.addInput(input)
         
         let dataOutput = AVCaptureVideoDataOutput()
@@ -171,7 +171,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     :param: point      The point to focus.
     :param: completion The completion handler will be called everytime. Even if the camera does not support focus.
     */
-    open func focusAt(_ point: CGPoint, completion:((Void)-> Void)?) {
+    open func focusAt(_ point: CGPoint, completion:(()-> Void)?) {
         if let device = self.captureDevice {
             let poi = CGPoint(x: point.y / self.bounds.height, y: 1.0 - (point.x / self.bounds.width))
             if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus) {
@@ -213,9 +213,9 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
         self.capturing = true
         
         var videoConnection: AVCaptureConnection?
-        for connection in self.stillImageOutput.connections as! [AVCaptureConnection] {
-            for port in connection.inputPorts as! [AVCaptureInputPort] {
-                if port.mediaType == AVMediaTypeVideo {
+        for connection in self.stillImageOutput.connections {
+            for port in connection.inputPorts {
+                if port.mediaType == AVMediaType.video {
                     videoConnection = connection
                     break
                 }
@@ -226,7 +226,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
         }
         
         self.stillImageOutput.captureStillImageAsynchronously(from: videoConnection!, completionHandler: { (imageSampleBuffer, error) -> Void in
-            let jpg = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
+            let jpg = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer!)
             
             var enhancedImage: CIImage = CIImage(data: jpg!)!
             switch self.imageFilter {
@@ -258,19 +258,19 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    open func _backgroundMode() {
+    @objc open func _backgroundMode() {
         self.forceStop = true
     }
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    open func _foregroundMode() {
+    @objc open func _foregroundMode() {
         self.forceStop = false
     }
     /**
     This method is for internal use only. But it must be public to subscribe to `NSNotificationCenter` events.
     */
-    open func _enableBorderDetection() {
+    @objc open func _enableBorderDetection() {
         self.borderDetectFrame = true
     }
     
@@ -329,13 +329,13 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     
     fileprivate func overlayImageForFeatureInImage(_ image: CIImage, feature: CIRectangleFeature) -> CIImage! {
         var overlay = CIImage(color: CIColor(color: self.borderDetectionFrameColor))
-        overlay = overlay.cropping(to: image.extent)
-        overlay = overlay.applyingFilter("CIPerspectiveTransformWithExtent", withInputParameters: ["inputExtent":     CIVector(cgRect: image.extent),
+        overlay = overlay.cropped(to: image.extent)
+        overlay = overlay.applyingFilter("CIPerspectiveTransformWithExtent", parameters: ["inputExtent":     CIVector(cgRect: image.extent),
             "inputTopLeft":    CIVector(cgPoint: feature.topLeft),
             "inputTopRight":   CIVector(cgPoint: feature.topRight),
             "inputBottomLeft": CIVector(cgPoint: feature.bottomLeft),
             "inputBottomRight": CIVector(cgPoint: feature.bottomRight)])
-        return overlay.compositingOverImage(image)
+        return overlay.composited(over: image)
     }
     
     fileprivate func hideGlkView(_ hide: Bool, completion:( () -> Void)?) {
@@ -351,7 +351,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     }
     
     fileprivate func perspectiveCorrectedImage(_ image: CIImage, feature: CIRectangleFeature) -> CIImage {
-        return image.applyingFilter("CIPerspectiveCorrection", withInputParameters: [
+        return image.applyingFilter("CIPerspectiveCorrection", parameters: [
             "inputTopLeft":    CIVector(cgPoint: feature.topLeft),
             "inputTopRight":   CIVector(cgPoint: feature.topRight),
             "inputBottomLeft": CIVector(cgPoint: feature.bottomLeft),
@@ -362,7 +362,7 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     /**
     This method is for internal use only. But must be declared public because it matches a requirement in public protocol `AVCaptureVideoDataOutputSampleBufferDelegate`.
     */
-    open func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    open func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if self.forceStop {
             return
         }
