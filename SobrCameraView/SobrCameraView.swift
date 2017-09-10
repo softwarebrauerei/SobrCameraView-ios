@@ -69,7 +69,6 @@ open class SobrCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate 
     fileprivate var captureDevice: AVCaptureDevice?
     fileprivate var context: EAGLContext?
     fileprivate var stillImageOutput: AVCaptureStillImageOutput = AVCaptureStillImageOutput()
-//    fileprivate var stillImageOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
     fileprivate var forceStop: Bool = false
     fileprivate var coreImageContext: CIContext?
     fileprivate var renderBuffer: GLuint = 0
