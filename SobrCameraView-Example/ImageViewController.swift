@@ -20,16 +20,16 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.sourceImageView.contentMode = .ScaleAspectFit
+        self.sourceImageView.contentMode = .scaleAspectFit
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.sourceImageView.image = self.sourceImage
     }
     
     
-    @IBAction func back(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func back(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
 }

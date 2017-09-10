@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944D4F3B1F652C1E009120ED /* Launchscreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944D4F3A1F652C1E009120ED /* Launchscreen.storyboard */; };
 		945023031B3895D5001D9A47 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945023021B3895D5001D9A47 /* UIKitExtensions.swift */; };
 		9458EB691B30A48D0000DA1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB681B30A48D0000DA1F /* AppDelegate.swift */; };
 		9458EB6B1B30A48D0000DA1F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB6A1B30A48D0000DA1F /* MainViewController.swift */; };
 		9458EB6E1B30A48D0000DA1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB6C1B30A48D0000DA1F /* Main.storyboard */; };
 		9458EB701B30A48D0000DA1F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB6F1B30A48D0000DA1F /* Images.xcassets */; };
-		9458EB731B30A48D0000DA1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9458EB711B30A48D0000DA1F /* LaunchScreen.xib */; };
 		9458EB7F1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */; };
 		9458EB8D1B30A4CC0000DA1F /* SobrCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8C1B30A4CC0000DA1F /* SobrCameraView.swift */; };
 		9458EB8F1B30A5DC0000DA1F /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */; };
@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		944D4F3A1F652C1E009120ED /* Launchscreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launchscreen.storyboard; sourceTree = "<group>"; };
 		945023021B3895D5001D9A47 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		9458EB631B30A48D0000DA1F /* SobrCameraView-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SobrCameraView-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9458EB671B30A48D0000DA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,7 +37,6 @@
 		9458EB6A1B30A48D0000DA1F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9458EB6D1B30A48D0000DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9458EB6F1B30A48D0000DA1F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9458EB721B30A48D0000DA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9458EB781B30A48D0000DA1F /* SobrCameraView-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SobrCameraView-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9458EB7D1B30A48D0000DA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9458EB7E1B30A48D0000DA1F /* SobrCameraView_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SobrCameraView_ExampleTests.swift; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 				9458EB8E1B30A5DC0000DA1F /* ImageViewController.swift */,
 				9458EB6C1B30A48D0000DA1F /* Main.storyboard */,
 				9458EB6F1B30A48D0000DA1F /* Images.xcassets */,
-				9458EB711B30A48D0000DA1F /* LaunchScreen.xib */,
 				9458EB661B30A48D0000DA1F /* Supporting Files */,
+				944D4F3A1F652C1E009120ED /* Launchscreen.storyboard */,
 			);
 			path = "SobrCameraView-Example";
 			sourceTree = "<group>";
@@ -174,14 +174,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Software Brauerei AG";
 				TargetAttributes = {
 					9458EB621B30A48D0000DA1F = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = EXRGZ65CXR;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 					};
 					9458EB771B30A48D0000DA1F = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0830;
 						TestTargetID = 9458EB621B30A48D0000DA1F;
 					};
 				};
@@ -210,8 +214,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944D4F3B1F652C1E009120ED /* Launchscreen.storyboard in Resources */,
 				9458EB6E1B30A48D0000DA1F /* Main.storyboard in Resources */,
-				9458EB731B30A48D0000DA1F /* LaunchScreen.xib in Resources */,
 				9458EB701B30A48D0000DA1F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,14 +269,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		9458EB711B30A48D0000DA1F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9458EB721B30A48D0000DA1F /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -289,8 +285,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -313,7 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -334,8 +332,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -351,9 +351,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -362,10 +363,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EXRGZ65CXR;
 				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fe513cb5-a1dc-4538-bb9e-e0224cb5171a";
+				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -373,10 +378,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "SobrCameraView-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -396,6 +404,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
 			};
 			name = Debug;
@@ -412,6 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.sobr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SobrCameraView-Example.app/SobrCameraView-Example";
 			};
 			name = Release;
